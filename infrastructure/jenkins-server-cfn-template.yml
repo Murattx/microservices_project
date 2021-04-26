@@ -108,7 +108,8 @@ Resources:
           cd /var/lib/jenkins/.docker
           echo '{"credsStore": "ecr-login"}' > config.json
           # install python 3
-          yum install python3 -y
+          yum -y install python3 python3-pip
+          python3 -m pip install -U pip
           # install ansible
           pip3 install ansible
           # install boto3
