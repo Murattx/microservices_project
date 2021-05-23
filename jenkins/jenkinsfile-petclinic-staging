@@ -6,12 +6,12 @@ pipeline {
         APP_REPO_NAME="clarusway-repo/petclinic-app-staging"
         AWS_ACCOUNT_ID=sh(script:'export PATH="$PATH:/usr/local/bin" && aws sts get-caller-identity --query Account --output text', returnStdout:true).trim()
         AWS_REGION="us-east-1"
-        ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        ECR_REGISTRY="public.ecr.aws/i5y5y9r8"
         
         RANCHER_URL="https://rancher03.devopsmatt.com/v3"       // -----> this is the endpoint coming from rancher ui (avatar > API & KEY > Add Key > give a description > dont select a scope > Create)
 
         // Get the project-id from Rancher UI
-        RANCHER_CONTEXT="c-pmtf2:p-9tlt7"  // -----> After creating a namespace in your application cluster, click on the menu icon (3 dots) of your newly created namespace. It s going to pop up a new small window. Click on "view API". It s going to open up a new page. Copy the value of the "ProjectId". This value will be assigned to RANCHER_CONTEXT variable...
+        RANCHER_CONTEXT="c-k7pkc:p-bbtlv"  // -----> After creating a namespace in your application cluster, click on the menu icon (3 dots) of your newly created namespace. It s going to pop up a new small window. Click on "view API". It s going to open up a new page. Copy the value of the "ProjectId". This value will be assigned to RANCHER_CONTEXT variable...
         
         //This credentilas will come from jenkins. You should go to Dashboard > Manage Jenkins > Manage Credentials > Click on "Global" > Add Credentials > Username will be the API Key ,  Password will be the SECRET KEY. Give an id to the Credential. this id will be used as an arguement in the function below.
         RANCHER_CREDS=credentials('petclinic-key')
